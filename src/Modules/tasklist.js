@@ -19,7 +19,7 @@ export class List {
     this.container = document.getElementById('list-item');
   }
 
-  render() {
+  display() {
     this.tasks
       .sort((a, b) => b.index - a.index)
       .forEach((task) => {
@@ -27,8 +27,8 @@ export class List {
         taskItem.innerHTML = `
         <span>
           ${
-            !task.completed
-  ? '<i class="bi bi-square"></i>'
+  !task.completed
+    ? '<i class="bi bi-square"></i>'
     : '<i class="bi bi-check-square"></i>'
 } ${task.description}
         </span>

@@ -1,5 +1,5 @@
 * {
-    font-family: "Courier New", Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 main {
@@ -44,7 +44,7 @@ main ul li.list-footer {
 
 main ul li.list-footer:hover {
   text-decoration: underline;
-  color: #000000;
+  color: #000;
 }
 
 main ul li i {

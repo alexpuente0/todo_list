@@ -13,7 +13,22 @@
 
 ## Getting Started
 
-In this project we created an interactive page to add/remove elements to a list.
+In this project we created an interactive page to add/remove elements to a list using ES6, Webpack, and JS Modules.
+
+## Installation
+
+1 - Clone the repository 
+(you must have [Git Installed](https://github.com/git-guides/install-git))
+
+`git clone git@github.com:alexpuente0/todo_list`
+
+2 - Enther the Repository folder you created (`todo_list`) using `cd to-do-list` in the command line
+
+3 - Type `code .` in the command line to open the project in Visual Studio Code 
+
+4 - Install the dependencies necesarry to run the project using `npm install`
+
+5 - Finally, run the project by typing `npm run start` from the command line.
 
 ## Authors
 
@@ -41,4 +56,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-MIT Licensed
+[MIT Licensed](./LICENSE)

@@ -27,9 +27,9 @@ export class List {
         taskItem.innerHTML = `
         <span>
           ${
-  !task.completed
-    ? '<i class="bi bi-square"></i>'
-    : '<i class="bi bi-check-square"></i>'
+  task.completed
+    ? '<i class="bi bi-check-square"></i>'
+    : '<i class="bi bi-square"></i>'
 } ${task.description}
         </span>
         <i class="bi bi-three-dots-vertical"></i>

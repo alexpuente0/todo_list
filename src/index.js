@@ -1,5 +1,5 @@
 import './restyle.css';
 import './style.css';
-import list from './modules/tasklist.js';
+import { List } from './modules/tasklist.js';
 
-list.display();
+List.display();

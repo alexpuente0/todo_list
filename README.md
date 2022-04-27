@@ -18,11 +18,11 @@ In this project we created an interactive page to add/remove elements to a list 
 ## Installation
 
 1 - Clone the repository 
-(you must have [Git Installed](https://github.com/git-guides/install-git))
+(you must have [Git Installed](https://github.com/git-guides/install-git)) using the following line of code:
 
 `git clone git@github.com:alexpuente0/todo_list`
 
-2 - Enther the Repository folder you created (`todo_list`) using `cd to-do-list` in the command line
+2 - Enther the Repository folder you created (`todo_list`) using `cd todo_list` in the command line
 
 3 - Type `code .` in the command line to open the project in Visual Studio Code 
 

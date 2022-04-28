@@ -1,13 +1,14 @@
+/* eslint-disable no-loop-func */
 let List = [];
 let isEditing = false;
 let todoEdit = null;
 
 const saveData = () => {
-  localStorage.setItem('listitem', JSON.stringify(List));
+  localStorage.setItem('tasklist', JSON.stringify(List));
 };
 
-const retrivedata = () => {
-  const localFormData = JSON.parse(localStorage.getItem('listitem'));
+const getData = () => {
+  const localFormData = JSON.parse(localStorage.getItem('tasklist'));
   if (localFormData == null) {
     List = [];
   } else {
@@ -15,7 +16,7 @@ const retrivedata = () => {
   }
 };
 
-const editList = (todo) => {
+const taskEdit = (todo) => {
   isEditing = true;
   todoEdit = todo;
   const desc = document.getElementById('addtodo');
@@ -23,32 +24,32 @@ const editList = (todo) => {
   desc.focus();
 };
 
-const displayToDo = () => {
-  const ListElement = document.getElementById('wholeList');
+const listDisplay = () => {
+  const ListElement = document.getElementById('alltasks');
   ListElement.innerHTML = '';
 
-  const removeList = (indexID) => {
+  const cancelTask = (indexID) => {
     List = List.filter((ind) => ind.index !== indexID);
     List = List.map((todo, index) => ({
       completed: todo.completed,
       description: todo.description,
       index: index + 1,
     }));
-    displayToDo();
+    listDisplay();
   };
 
   for (let i = 0; i < List.length; i += 1) {
     const todoLiElement = document.createElement('li');
 
-    const todoCheckboxElement = document.createElement('input');
-    todoCheckboxElement.classList.add('check-input');
-    todoCheckboxElement.setAttribute('type', 'checkbox');
-    todoCheckboxElement.setAttribute('name', 'checkbox');
-    todoCheckboxElement.setAttribute('value', List[i].index);
+    const taskCheck = document.createElement('input');
+    taskCheck.classList.add('check-input');
+    taskCheck.setAttribute('type', 'checkbox');
+    taskCheck.setAttribute('name', 'checkbox');
+    taskCheck.setAttribute('value', List[i].index);
 
-    const todoDescriptionElement = document.createElement('p');
-    todoDescriptionElement.classList.add('label');
-    todoDescriptionElement.innerText = List[i].description;
+    const taskDescription = document.createElement('p');
+    taskDescription.classList.add('label');
+    taskDescription.innerText = List[i].description;
 
     const actionBtns = document.createElement('div');
     const editBtn = document.createElement('button');
@@ -57,7 +58,7 @@ const displayToDo = () => {
     editBtn.innerHTML = '<i class="bi bi-pencil-square"></i>';
 
     editBtn.addEventListener('click', () => {
-      editList(List[i]);
+      taskEdit(List[i]);
     });
 
     const deleteBtn = document.createElement('button');
@@ -66,25 +67,25 @@ const displayToDo = () => {
     deleteBtn.innerHTML = '<i class="bi bi-trash3"></i>';
 
     deleteBtn.addEventListener('click', () => {
-      removeList(List[i].index);
+      cancelTask(List[i].index);
     });
 
-    const moreEllipsisBtn = document.createElement('button');
-    moreEllipsisBtn.classList.add('more-btn');
-    moreEllipsisBtn.setAttribute('type', 'button');
-    moreEllipsisBtn.innerHTML = '<i class="bi bi-three-dots-vertical"></i>';
+    const showFuncBtn = document.createElement('button');
+    showFuncBtn.classList.add('more-btn');
+    showFuncBtn.setAttribute('type', 'button');
+    showFuncBtn.innerHTML = '<i class="bi bi-three-dots-vertical"></i>';
 
-    moreEllipsisBtn.addEventListener('click', () => {
+    showFuncBtn.addEventListener('click', () => {
       editBtn.classList.toggle('hide');
       deleteBtn.classList.toggle('hide');
     });
 
-    todoLiElement.appendChild(todoCheckboxElement);
-    todoLiElement.appendChild(todoDescriptionElement);
+    todoLiElement.appendChild(taskCheck);
+    todoLiElement.appendChild(taskDescription);
 
     actionBtns.appendChild(editBtn);
     actionBtns.appendChild(deleteBtn);
-    actionBtns.appendChild(moreEllipsisBtn);
+    actionBtns.appendChild(showFuncBtn);
 
     todoLiElement.appendChild(actionBtns);
     ListElement.appendChild(todoLiElement);
@@ -92,14 +93,14 @@ const displayToDo = () => {
   saveData();
 };
 
-const addTodo = () => {
+const addNew = () => {
   const desc = document.getElementById('addtodo');
   if (desc.value) {
     const completed = false;
     const description = desc.value;
     const index = List.length + 1;
     List.push({ completed, description, index });
-    displayToDo();
+    listDisplay();
     saveData();
     desc.value = null;
   }
@@ -119,7 +120,7 @@ const saveEdit = () => {
       }
       return todo;
     });
-    displayToDo();
+    listDisplay();
     saveData();
     desc.value = null;
     isEditing = false;
@@ -130,5 +131,5 @@ const saveEdit = () => {
 const getIsEditing = () => isEditing;
 
 export {
-  retrivedata, addTodo, saveEdit, displayToDo, getIsEditing,
+  getData, addNew, saveEdit, listDisplay, getIsEditing,
 };

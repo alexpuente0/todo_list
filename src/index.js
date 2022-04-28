@@ -1,21 +1,21 @@
 import './style.css';
 import {
-  retrivedata,
-  addTodo,
+  getData,
+  addNew,
   saveEdit,
-  displayToDo,
+  listDisplay,
   getIsEditing,
 } from './Modules/taskmanage.js';
 
 window.onload = () => {
-  retrivedata();
-  displayToDo();
+  getData();
+  listDisplay();
 };
 const desc = document.querySelector('#addtodo');
 desc.addEventListener('keyup', (event) => {
   if (event.keyCode === 13) {
     event.preventDefault();
-    if (!getIsEditing()) addTodo();
+    if (!getIsEditing()) addNew();
     else saveEdit();
   }
 });

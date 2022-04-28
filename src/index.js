@@ -1,5 +1,21 @@
-import './restyle.css';
 import './style.css';
-import list from './Modules/tasklist.js';
+import {
+  getData,
+  addNew,
+  saveEdit,
+  listDisplay,
+  getIsEditing,
+} from './Modules/taskmanage.js';
 
-list.display();
+window.onload = () => {
+  getData();
+  listDisplay();
+};
+const desc = document.querySelector('#addtodo');
+desc.addEventListener('keyup', (event) => {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    if (!getIsEditing()) addNew();
+    else saveEdit();
+  }
+});

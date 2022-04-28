@@ -2,26 +2,27 @@
   font-family: "Courier New", Courier, monospace;
 }
 
-main {
+.container {
   width: 60%;
-  margin: 10em auto;
+  margin: 85px auto;
   display: flex;
   flex-direction: column;
   gap: 3em;
 }
 
-main h1 {
+.container h1 {
   text-align: center;
 }
 
-main ul {
+.container ul {
   display: flex;
   flex-direction: column;
-  box-shadow: 0 5px 5px 1px #b3b3b3;
+  box-shadow: 0 5px 5px 3px #b3b3b3;
   border-radius: 3px;
+  border-top: 0.5px solid #b3b3b3;
 }
 
-main ul li {
+.container ul li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,45 +31,41 @@ main ul li {
   font-size: 16px;
 }
 
-main ul li:not(:last-child) {
+.container ul li:not(:last-child) {
   border-bottom: 0.5px solid #b3b3b371;
 }
 
-main ul li.list-footer {
+.clearallbutton {
   background-color: #f8f8f8;
   display: flex;
   justify-content: center;
   color: #818181;
   cursor: pointer;
+  width: 100%;
+  height: 50px;
+  border: 0.5px solid #b3b3b371;
+  align-items: center;
 }
 
-main ul li.list-footer:hover {
+.clearallbutton:hover {
   text-decoration: underline;
   color: #000;
 }
 
-main ul li i {
+.container ul li i {
   cursor: pointer;
-  color: #a0a0a0;
+  color: #585858;
 }
 
-main ul li i.bi-three-dots-vertical:hover {
-  cursor: move;
-}
-
-main ul li i:hover {
+.container ul li i:hover {
   color: #202020;
 }
 
-main ul li form {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin: -1em auto;
-  position: relative;
+.hide {
+  display: none;
 }
 
-main ul li form input {
+.add-input {
   width: 100%;
   border: none;
   outline: none;
@@ -77,10 +74,12 @@ main ul li form input {
   font-size: 16px;
 }
 
-main ul li form button {
-  position: absolute;
-  right: 0;
-  background-color: transparent;
+.container button {
+  background-color: #fff;
   border: none;
-  padding: 0;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+}
+
+.ggg {
+  border: 1px solid red;
 }

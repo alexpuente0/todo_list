@@ -19,7 +19,7 @@
   flex-direction: column;
   box-shadow: 0 5px 5px 3px #b3b3b3;
   border-radius: 3px;
-  border-top: 0.5px solid #b3b3b3;
+  border-top: 0.5px solid #b3b3b371;
 }
 
 .container ul li {
@@ -33,23 +33,6 @@
 
 .container ul li:not(:last-child) {
   border-bottom: 0.5px solid #b3b3b371;
-}
-
-.clearallbutton {
-  background-color: #f8f8f8;
-  display: flex;
-  justify-content: center;
-  color: #818181;
-  cursor: pointer;
-  width: 100%;
-  height: 50px;
-  border: 0.5px solid #b3b3b371;
-  align-items: center;
-}
-
-.clearallbutton:hover {
-  text-decoration: underline;
-  color: #000;
 }
 
 .container ul li i {
@@ -74,12 +57,31 @@
   font-size: 16px;
 }
 
+.container .clearcomplete {
+  background-color: #fff;
+  border: none;
+  box-shadow: 0 5px 5px 3px #b3b3b3;
+  display: flex;
+  justify-content: center;
+  color: #818181;
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  border-top: 0.2px solid #b3b3b371;
+}
+
+.clearcomplete:hover {
+  text-decoration: underline;
+  color: #000;
+  background-color: #f9f9f9;
+}
+
 .container button {
   background-color: #fff;
   border: none;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
 }
 
-.ggg {
-  border: 1px solid red;
+.completed {
+  text-decoration: line-through;
 }

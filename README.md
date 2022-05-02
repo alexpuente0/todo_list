@@ -30,6 +30,10 @@ In this project we created an interactive page to add/remove elements to a list 
 
 5 - Finally, run the project by typing `npm run start` from the command line.
 
+## Live Demo
+
+You can check the app's functionality [here](https://alexpuente0.github.io/todo_list/).
+
 ## Authors
 
 👤 **Alex Puente**

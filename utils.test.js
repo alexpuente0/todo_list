@@ -22,7 +22,7 @@ describe('Add new task', () => {
 });
 
 describe('Remove task', () => {
-  test('Should return', () => {
+  test('Should delete Task 2 and return Tasks 1 and 3', () => {
     let list = [
       { completed: false, description: 'task 1', index: 1 },
       { completed: false, description: 'task 2', index: 2 },

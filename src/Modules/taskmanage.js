@@ -51,14 +51,15 @@ const listDisplay = (List) => {
 
     // Checkbox functionality
 
-    taskCheck.addEventListener('change', () => {
+    taskCheck.addEventListener('change', (event) => {
       if (taskCheck.checked) {
         taskDescription.classList.add('completed');
-        List[i].completed = true;
+        List = updateStatus(List, i);
       } else {
         taskDescription.classList.remove('completed');
         taskStatus(List[i]);
       }
+      storeList(List);
     });
 
     const actionBtns = document.createElement('div');
@@ -105,6 +106,12 @@ const listDisplay = (List) => {
   }
 };
 
+const updateStatus = (list, index) => {
+  list[index].completed = true;
+
+  return list;
+}
+
 // Clear all checked tasks
 
 const clearCompleted = (List) => {
@@ -122,7 +129,8 @@ module.exports = {
   listDisplay,
   clearCompleted,
   List,
-  cancelTask
+  cancelTask,
+  updateStatus
 };
 /*
 exports.getData = getData;

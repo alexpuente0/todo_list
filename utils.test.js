@@ -1,6 +1,7 @@
 const { addNew } = require('./src/Modules/utils.js');
 const { saveEdit } = require('./src/Modules/utils.js');
 const { cancelTask } = require('./src/Modules/taskmanage.js');
+const { updateStatus } = require('./src/Modules/taskmanage.js');
 let taskMocks = require('./__mocks__/taskmocks.js');
 
 beforeEach(() => {
@@ -52,6 +53,23 @@ describe('Edit task', () => {
     expect(list).toEqual([
       { completed: false, description: 'edited', index: 1 },
       { completed: false, description: 'task 3', index: 2 }
+    ]);
+  });
+});
+
+
+describe('Update list element status', () => {
+  test('Should update completed status on element at given index 0', () => {
+    let list = [
+      { completed: false, description: 'task 1', index: 0 },
+      { completed: false, description: 'task 3', index: 1 }
+    ];
+
+    list = updateStatus(list, 0);
+
+    expect(list).toEqual([
+      { completed: true, description: 'task 1', index: 0 },
+      { completed: false, description: 'task 3', index: 1 }
     ]);
   });
 });

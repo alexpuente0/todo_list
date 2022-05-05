@@ -1,18 +1,9 @@
 /* eslint-disable no-loop-func */
 const { storeList } = require('./utils.js');
+const { taskEdit } = require('./utils.js');
 
 const List = [];
-let isEditing = false;
-let todoEdit = null;
 
-// Edit selected task
-
-const taskEdit = (todo) => {
-  isEditing = true;
-  todoEdit = todo;
-  const desc = document.getElementById('addtodo');
-  desc.value = todo.description;
-};
 
 // Delete task (with delete button)
 const cancelTask = (List, indexID) => {
@@ -77,6 +68,7 @@ const listDisplay = (List) => {
     editBtn.innerHTML = '<i class="bi bi-pencil-square"></i>';
 
     editBtn.addEventListener('click', () => {
+      console.log(taskEdit);
       taskEdit(List[i]);
     });
 
@@ -113,27 +105,6 @@ const listDisplay = (List) => {
   }
 };
 
-// Save edited Task
-const saveEdit = (List) => {
-  const desc = document.getElementById('addtodo');
-  if (desc.value) {
-    List = List.map((todo) => {
-      if (todo.index === todoEdit.index) {
-        return { ...todo, description: desc.value };
-      }
-      return todo;
-    });
-    desc.value = null;
-    isEditing = false;
-    todoEdit = null;
-
-    return List;
-  }
-  return List;
-};
-
-const getIsEditing = () => isEditing;
-
 // Clear all checked tasks
 
 const clearCompleted = (List) => {
@@ -148,13 +119,10 @@ const clearCompleted = (List) => {
 };
 
 module.exports = {
-  saveEdit,
   listDisplay,
-  getIsEditing,
   clearCompleted,
   List,
-  cancelTask,
-  saveEdit,
+  cancelTask
 };
 /*
 exports.getData = getData;

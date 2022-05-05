@@ -1,5 +1,7 @@
 const { addNew } = require('./src/Modules/utils.js');
-const { cancelTask, saveEdit } = require('./src/Modules/taskmanage.js');
+const { saveEdit } = require('./src/Modules/utils.js');
+const { cancelTask } = require('./src/Modules/taskmanage.js');
+let taskMocks = require('./__mocks__/taskmocks.js');
 
 beforeEach(() => {
   global.document = {
@@ -38,12 +40,18 @@ describe('Remove task', () => {
 
 describe('Edit task', () => {
   test('Should modify a task description', () => {
+    let todoEdit = taskMocks.todoEdit;
+    console.log(todoEdit.index);
     document.getElementById.mockReturnValue({ value: 'edited' });
-    let list = [];
-    localStorage.setItem('tasklist', JSON.stringify(list));
-    list = saveEdit(list);
+    let list = [
+      { completed: false, description: 'task 1', index: 1 },
+      { completed: false, description: 'task 3', index: 2 }
+    ];
+    
+    list = saveEdit(list, {index: 1});
     expect(list).toEqual([
-      { completed: false, description: 'edited', index: 1 }
+      { completed: false, description: 'edited', index: 1 },
+      { completed: false, description: 'task 3', index: 2 }
     ]);
   });
 });

@@ -1,9 +1,4 @@
-const listDisplay = () => {
 
-};
+let todoEdit = {index: 1}
 
-const storeList = () => {
-
-};
-
-module.exports = { listDisplay, storeList };
+module.exports = { todoEdit };

@@ -1,3 +1,5 @@
+const globalEdit = require('./globalEdit.js');
+
 // Add new Task
 const addNew = (List) => {
   const desc = document.getElementById('addtodo');
@@ -31,7 +33,34 @@ const storeList = (List) => {
   localStorage.setItem('tasklist', JSON.stringify(List));
 };
 
-module.exports = { addNew, getData, storeList };
+// Save edited Task
+const saveEdit = (List, todoEdit) => {
+  const desc = document.getElementById('addtodo');
+  if (desc.value) {
+    List = List.map((todo) => {
+      if (todo.index === todoEdit.index) {
+        return { ...todo, description: desc.value };
+      }
+      return todo;
+    });
+    desc.value = null;
+
+    return List;
+  }
+  return List;
+};
+
+// Edit selected task
+const taskEdit = (todo) => {
+  globalEdit.isEditing = true;
+  globalEdit.todoEdit = todo;
+  const desc = document.getElementById('addtodo');
+  desc.value = todo.description;
+};
+
+module.exports = {
+  addNew, getData, storeList, saveEdit, taskEdit,
+};
 
 /* exports.addNew = addNew;
 exports.getData = getData; */

@@ -1,19 +1,8 @@
 /* eslint-disable no-loop-func */
 const { storeList } = require('./utils.js');
+const { taskEdit } = require('./utils.js');
 
 const List = [];
-let isEditing = false;
-let todoEdit = null;
-
-// Edit selected task
-
-const taskEdit = (todo) => {
-  isEditing = true;
-  todoEdit = todo;
-  const desc = document.getElementById('addtodo');
-  desc.value = todo.description;
-  desc.focus();
-};
 
 // Delete task (with delete button)
 const cancelTask = (List, indexID) => {
@@ -24,6 +13,13 @@ const cancelTask = (List, indexID) => {
     index: index + 1,
   }));
   return List;
+};
+
+// Checkbox functionality
+
+const updateStatus = (list, index) => {
+  list[index].completed = true;
+  return list;
 };
 
 // Display Task List
@@ -59,16 +55,15 @@ const listDisplay = (List) => {
     taskDescription.classList.add('label');
     taskDescription.innerText = List[i].description;
 
-    // Checkbox functionality
-
     taskCheck.addEventListener('change', () => {
       if (taskCheck.checked) {
         taskDescription.classList.add('completed');
-        List[i].completed = true;
+        List = updateStatus(List, i);
       } else {
         taskDescription.classList.remove('completed');
         taskStatus(List[i]);
       }
+      storeList(List);
     });
 
     const actionBtns = document.createElement('div');
@@ -114,27 +109,6 @@ const listDisplay = (List) => {
   }
 };
 
-// Save edited Task
-const saveEdit = (List) => {
-  const desc = document.getElementById('addtodo');
-  if (desc.value) {
-    List = List.map((todo) => {
-      if (todo.index === todoEdit.index) {
-        return { ...todo, description: desc.value };
-      }
-      return todo;
-    });
-    desc.value = null;
-    isEditing = false;
-    todoEdit = null;
-
-    return List;
-  }
-  return List;
-};
-
-const getIsEditing = () => isEditing;
-
 // Clear all checked tasks
 
 const clearCompleted = (List) => {
@@ -144,17 +118,15 @@ const clearCompleted = (List) => {
     description: todo.description,
     index: index + 1,
   }));
-  storeList(List);
-  listDisplay(List);
+  return List;
 };
 
 module.exports = {
-  saveEdit,
   listDisplay,
-  getIsEditing,
   clearCompleted,
   List,
   cancelTask,
+  updateStatus,
 };
 /*
 exports.getData = getData;

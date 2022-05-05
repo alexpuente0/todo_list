@@ -36,5 +36,5 @@ desc.addEventListener('keyup', (event) => {
 
 const clear = document.querySelector('.clearcomplete');
 clear.addEventListener('click', () => {
-  clearCompleted();
+  clearCompleted(List);
 });

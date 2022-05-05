@@ -20,6 +20,7 @@ const addNew = (List) => {
 // Get Task List from Local Storage
 const getData = () => {
   const localFormData = JSON.parse(localStorage.getItem('tasklist'));
+  console.log(localFormData);
   if (localFormData == null) {
     return List = [];
   } else {

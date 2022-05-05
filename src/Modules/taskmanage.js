@@ -12,7 +12,6 @@ const taskEdit = (todo) => {
   todoEdit = todo;
   const desc = document.getElementById('addtodo');
   desc.value = todo.description;
-  desc.focus();
 };
 
 // Delete task (with delete button)
@@ -155,6 +154,7 @@ module.exports = {
   clearCompleted,
   List,
   cancelTask,
+  saveEdit,
 };
 /*
 exports.getData = getData;

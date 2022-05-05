@@ -20,12 +20,10 @@ const addNew = (List) => {
 // Get Task List from Local Storage
 const getData = () => {
   const localFormData = JSON.parse(localStorage.getItem('tasklist'));
-  console.log(localFormData);
   if (localFormData == null) {
-    return List = [];
-  } else {
-    return localFormData;
+    return [];
   }
+  return localFormData;
 };
 
 // Save Task List to Local Storage
@@ -33,7 +31,7 @@ const storeList = (List) => {
   localStorage.setItem('tasklist', JSON.stringify(List));
 };
 
-module.exports = { addNew, getData, storeList }
+module.exports = { addNew, getData, storeList };
 
 /* exports.addNew = addNew;
 exports.getData = getData; */

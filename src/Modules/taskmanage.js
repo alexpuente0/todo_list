@@ -1,11 +1,9 @@
 /* eslint-disable no-loop-func */
 const { storeList } = require('./utils.js');
 
-
-let List = [];
+const List = [];
 let isEditing = false;
 let todoEdit = null;
-
 
 // Edit selected task
 
@@ -16,7 +14,6 @@ const taskEdit = (todo) => {
   desc.value = todo.description;
   desc.focus();
 };
-
 
 // Delete task (with delete button)
 const cancelTask = (List, indexID) => {
@@ -117,7 +114,6 @@ const listDisplay = (List) => {
   }
 };
 
-
 // Save edited Task
 const saveEdit = (List) => {
   const desc = document.getElementById('addtodo');
@@ -134,6 +130,7 @@ const saveEdit = (List) => {
 
     return List;
   }
+  return List;
 };
 
 const getIsEditing = () => isEditing;
@@ -156,11 +153,12 @@ module.exports = {
   listDisplay,
   getIsEditing,
   clearCompleted,
-  List
-}
-/* 
-exports.getData = getData; 
-exports.saveEdit = saveEdit; 
+  List,
+  cancelTask,
+};
+/*
+exports.getData = getData;
+exports.saveEdit = saveEdit;
 exports.listDisplay = listDisplay;
 exports.getIsEditing = getIsEditing;
 exports.clearCompleted = clearCompleted;

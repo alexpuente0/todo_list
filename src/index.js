@@ -1,4 +1,5 @@
 import './style.css';
+
 const {
   saveEdit,
   listDisplay,
@@ -6,10 +7,9 @@ const {
   clearCompleted,
 } = require('./Modules/taskmanage.js');
 
-let {List} = require('./Modules/taskmanage.js');
+let { List } = require('./Modules/taskmanage.js');
 
 const utils = require('./Modules/utils.js');
-
 
 window.onload = () => {
   List = utils.getData();
@@ -21,12 +21,10 @@ desc.addEventListener('keyup', (event) => {
   if (event.keyCode === 13) {
     event.preventDefault();
     if (!getIsEditing()) {
-      console.log(List);
       List = utils.addNew(List);
       listDisplay(List);
       utils.storeList(List);
-    }
-    else {
+    } else {
       List = saveEdit(List);
       listDisplay(List);
       utils.storeList(List);

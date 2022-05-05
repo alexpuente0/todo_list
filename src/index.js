@@ -4,7 +4,6 @@ const {
   listDisplay,
   getIsEditing,
   clearCompleted,
-  storeList,
 } = require('./Modules/taskmanage.js');
 
 let {List} = require('./Modules/taskmanage.js');
@@ -27,7 +26,11 @@ desc.addEventListener('keyup', (event) => {
       listDisplay(List);
       utils.storeList(List);
     }
-    else saveEdit();
+    else {
+      List = saveEdit(List);
+      listDisplay(List);
+      utils.storeList(List);
+    }
   }
 });
 

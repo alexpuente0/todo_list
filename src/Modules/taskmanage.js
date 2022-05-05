@@ -38,7 +38,6 @@ const listDisplay = (List) => {
       }
       return todoItem;
     });
-    storeList();
   };
 
   // Loop for creating Tasks on List
@@ -116,7 +115,7 @@ const listDisplay = (List) => {
 
 // Save edited Task
 
-const saveEdit = () => {
+const saveEdit = (List) => {
   const desc = document.getElementById('addtodo');
   if (desc.value) {
     List = List.map((todo) => {
@@ -125,11 +124,11 @@ const saveEdit = () => {
       }
       return todo;
     });
-    listDisplay();
-    storeList();
     desc.value = null;
     isEditing = false;
     todoEdit = null;
+
+    return List;
   }
 };
 

@@ -4,22 +4,6 @@ let List = [];
 let isEditing = false;
 let todoEdit = null;
 
-// Save Task List to Local Storage
-
-const storeList = () => {
-  localStorage.setItem('tasklist', JSON.stringify(List));
-};
-
-// Get Task List from Local Storage
-
-const getData = () => {
-  const localFormData = JSON.parse(localStorage.getItem('tasklist'));
-  if (localFormData == null) {
-    List = [];
-  } else {
-    List = localFormData;
-  }
-};
 
 // Edit selected task
 
@@ -31,23 +15,21 @@ const taskEdit = (todo) => {
   desc.focus();
 };
 
-// Display Task List
 
-const listDisplay = () => {
+// Delete task (with delete button)
+const cancelTask = (indexID) => {
+  List = List.filter((ind) => ind.index !== indexID);
+  List = List.map((todo, index) => ({
+    completed: todo.completed,
+    description: todo.description,
+    index: index + 1,
+  }));
+};
+
+// Display Task List
+const listDisplay = (List) => {
   const ListElement = document.getElementById('alltasks');
   ListElement.innerHTML = '';
-
-  // Delete task (with delete button)
-
-  const cancelTask = (indexID) => {
-    List = List.filter((ind) => ind.index !== indexID);
-    List = List.map((todo, index) => ({
-      completed: todo.completed,
-      description: todo.description,
-      index: index + 1,
-    }));
-    listDisplay();
-  };
 
   const taskStatus = (todo) => {
     List = List.map((todoItem) => {
@@ -129,7 +111,6 @@ const listDisplay = () => {
     todoLiElement.appendChild(actionBtns);
     ListElement.appendChild(todoLiElement);
   }
-  storeList();
 };
 
 
@@ -167,10 +148,18 @@ const clearCompleted = () => {
   listDisplay();
 };
 
+module.exports = {
+  saveEdit,
+  listDisplay,
+  getIsEditing,
+  clearCompleted,
+  List
+}
+/* 
 exports.getData = getData; 
 exports.saveEdit = saveEdit; 
 exports.listDisplay = listDisplay;
 exports.getIsEditing = getIsEditing;
 exports.clearCompleted = clearCompleted;
 exports.storeList = storeList;
-exports.List = List;
+exports.List = List; */

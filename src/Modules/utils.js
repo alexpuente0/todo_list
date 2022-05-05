@@ -1,4 +1,4 @@
-const globalEdit = require("./globalEdit.js");
+const globalEdit = require('./globalEdit.js');
 
 // Add new Task
 const addNew = (List) => {
@@ -58,8 +58,9 @@ const taskEdit = (todo) => {
   desc.value = todo.description;
 };
 
-
-module.exports = { addNew, getData, storeList, saveEdit, taskEdit };
+module.exports = {
+  addNew, getData, storeList, saveEdit, taskEdit,
+};
 
 /* exports.addNew = addNew;
 exports.getData = getData; */

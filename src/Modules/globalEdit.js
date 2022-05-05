@@ -1,6 +1,6 @@
 const globalEdit = {
   todoEdit: null,
-  isEditing: false
-}
+  isEditing: false,
+};
 
 module.exports = globalEdit;

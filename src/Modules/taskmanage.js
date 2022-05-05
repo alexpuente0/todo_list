@@ -4,7 +4,6 @@ const { taskEdit } = require('./utils.js');
 
 const List = [];
 
-
 // Delete task (with delete button)
 const cancelTask = (List, indexID) => {
   List = List.filter((ind) => ind.index !== indexID);
@@ -14,6 +13,13 @@ const cancelTask = (List, indexID) => {
     index: index + 1,
   }));
   return List;
+};
+
+// Checkbox functionality
+
+const updateStatus = (list, index) => {
+  list[index].completed = true;
+  return list;
 };
 
 // Display Task List
@@ -49,9 +55,7 @@ const listDisplay = (List) => {
     taskDescription.classList.add('label');
     taskDescription.innerText = List[i].description;
 
-    // Checkbox functionality
-
-    taskCheck.addEventListener('change', (event) => {
+    taskCheck.addEventListener('change', () => {
       if (taskCheck.checked) {
         taskDescription.classList.add('completed');
         List = updateStatus(List, i);
@@ -69,7 +73,6 @@ const listDisplay = (List) => {
     editBtn.innerHTML = '<i class="bi bi-pencil-square"></i>';
 
     editBtn.addEventListener('click', () => {
-      console.log(taskEdit);
       taskEdit(List[i]);
     });
 
@@ -106,12 +109,6 @@ const listDisplay = (List) => {
   }
 };
 
-const updateStatus = (list, index) => {
-  list[index].completed = true;
-
-  return list;
-}
-
 // Clear all checked tasks
 
 const clearCompleted = (List) => {
@@ -121,8 +118,7 @@ const clearCompleted = (List) => {
     description: todo.description,
     index: index + 1,
   }));
-  storeList(List);
-  listDisplay(List);
+  return List;
 };
 
 module.exports = {
@@ -130,7 +126,7 @@ module.exports = {
   clearCompleted,
   List,
   cancelTask,
-  updateStatus
+  updateStatus,
 };
 /*
 exports.getData = getData;

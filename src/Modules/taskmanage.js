@@ -132,25 +132,6 @@ const listDisplay = () => {
   storeList();
 };
 
-// Add new Task
-
-const addNew = () => {
-  const desc = document.getElementById('addtodo');
-  if (desc.value) {
-    const completed = false;
-    const description = desc.value;
-    const index = List.length + 1;
-    List.push({ completed, description, index });
-    listDisplay();
-    storeList();
-    desc.value = null;
-  }
-  List = List.map((todo, index) => ({
-    completed: todo.completed,
-    description: todo.description,
-    index: index + 1,
-  }));
-};
 
 // Save edited Task
 
@@ -186,6 +167,10 @@ const clearCompleted = () => {
   listDisplay();
 };
 
-export {
-  getData, addNew, saveEdit, listDisplay, getIsEditing, clearCompleted,
-};
+exports.getData = getData; 
+exports.saveEdit = saveEdit; 
+exports.listDisplay = listDisplay;
+exports.getIsEditing = getIsEditing;
+exports.clearCompleted = clearCompleted;
+exports.storeList = storeList;
+exports.List = List;

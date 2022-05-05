@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "webpack serve --open",
     "server": "node server.js",
     "build": "webpack"
@@ -20,6 +20,8 @@
     "eslint-plugin-import": "^2.26.0",
     "express": "^4.18.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.0.3",
+    "jsdom": "^19.0.0",
     "style-loader": "^3.3.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",

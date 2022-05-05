@@ -1,28 +1,38 @@
 import './style.css';
-import {
-  getData,
-  addNew,
+
+const {
   saveEdit,
   listDisplay,
   getIsEditing,
   clearCompleted,
-} from './Modules/taskmanage.js';
+} = require('./Modules/taskmanage.js');
+
+let { List } = require('./Modules/taskmanage.js');
+
+const utils = require('./Modules/utils.js');
 
 window.onload = () => {
-  getData();
-  listDisplay();
+  List = utils.getData();
+  listDisplay(List);
 };
 
 const desc = document.querySelector('#addtodo');
 desc.addEventListener('keyup', (event) => {
   if (event.keyCode === 13) {
     event.preventDefault();
-    if (!getIsEditing()) addNew();
-    else saveEdit();
+    if (!getIsEditing()) {
+      List = utils.addNew(List);
+      listDisplay(List);
+      utils.storeList(List);
+    } else {
+      List = saveEdit(List);
+      listDisplay(List);
+      utils.storeList(List);
+    }
   }
 });
 
 const clear = document.querySelector('.clearcomplete');
 clear.addEventListener('click', () => {
-  clearCompleted();
+  clearCompleted(List);
 });

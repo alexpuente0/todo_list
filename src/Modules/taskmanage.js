@@ -1,25 +1,9 @@
 /* eslint-disable no-loop-func */
+const { storeList } = require('./utils.js');
 
-let List = [];
+const List = [];
 let isEditing = false;
 let todoEdit = null;
-
-// Save Task List to Local Storage
-
-const storeList = () => {
-  localStorage.setItem('tasklist', JSON.stringify(List));
-};
-
-// Get Task List from Local Storage
-
-const getData = () => {
-  const localFormData = JSON.parse(localStorage.getItem('tasklist'));
-  if (localFormData == null) {
-    List = [];
-  } else {
-    List = localFormData;
-  }
-};
 
 // Edit selected task
 
@@ -31,23 +15,21 @@ const taskEdit = (todo) => {
   desc.focus();
 };
 
-// Display Task List
+// Delete task (with delete button)
+const cancelTask = (List, indexID) => {
+  List = List.filter((ind) => ind.index !== indexID);
+  List = List.map((todo, index) => ({
+    completed: todo.completed,
+    description: todo.description,
+    index: index + 1,
+  }));
+  return List;
+};
 
-const listDisplay = () => {
+// Display Task List
+const listDisplay = (List) => {
   const ListElement = document.getElementById('alltasks');
   ListElement.innerHTML = '';
-
-  // Delete task (with delete button)
-
-  const cancelTask = (indexID) => {
-    List = List.filter((ind) => ind.index !== indexID);
-    List = List.map((todo, index) => ({
-      completed: todo.completed,
-      description: todo.description,
-      index: index + 1,
-    }));
-    listDisplay();
-  };
 
   const taskStatus = (todo) => {
     List = List.map((todoItem) => {
@@ -56,7 +38,6 @@ const listDisplay = () => {
       }
       return todoItem;
     });
-    storeList();
   };
 
   // Loop for creating Tasks on List
@@ -106,7 +87,9 @@ const listDisplay = () => {
     deleteBtn.innerHTML = '<i class="bi bi-trash3"></i>';
 
     deleteBtn.addEventListener('click', () => {
-      cancelTask(List[i].index);
+      List = cancelTask(List, List[i].index);
+      listDisplay(List);
+      storeList(List);
     });
 
     const showFuncBtn = document.createElement('button');
@@ -129,32 +112,10 @@ const listDisplay = () => {
     todoLiElement.appendChild(actionBtns);
     ListElement.appendChild(todoLiElement);
   }
-  storeList();
-};
-
-// Add new Task
-
-const addNew = () => {
-  const desc = document.getElementById('addtodo');
-  if (desc.value) {
-    const completed = false;
-    const description = desc.value;
-    const index = List.length + 1;
-    List.push({ completed, description, index });
-    listDisplay();
-    storeList();
-    desc.value = null;
-  }
-  List = List.map((todo, index) => ({
-    completed: todo.completed,
-    description: todo.description,
-    index: index + 1,
-  }));
 };
 
 // Save edited Task
-
-const saveEdit = () => {
+const saveEdit = (List) => {
   const desc = document.getElementById('addtodo');
   if (desc.value) {
     List = List.map((todo) => {
@@ -163,29 +124,43 @@ const saveEdit = () => {
       }
       return todo;
     });
-    listDisplay();
-    storeList();
     desc.value = null;
     isEditing = false;
     todoEdit = null;
+
+    return List;
   }
+  return List;
 };
 
 const getIsEditing = () => isEditing;
 
 // Clear all checked tasks
 
-const clearCompleted = () => {
+const clearCompleted = (List) => {
   List = List.filter((todo) => !todo.completed);
   List = List.map((todo, index) => ({
     completed: todo.completed,
     description: todo.description,
     index: index + 1,
   }));
-  storeList();
-  listDisplay();
+  storeList(List);
+  listDisplay(List);
 };
 
-export {
-  getData, addNew, saveEdit, listDisplay, getIsEditing, clearCompleted,
+module.exports = {
+  saveEdit,
+  listDisplay,
+  getIsEditing,
+  clearCompleted,
+  List,
+  cancelTask,
 };
+/*
+exports.getData = getData;
+exports.saveEdit = saveEdit;
+exports.listDisplay = listDisplay;
+exports.getIsEditing = getIsEditing;
+exports.clearCompleted = clearCompleted;
+exports.storeList = storeList;
+exports.List = List; */

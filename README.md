@@ -8,19 +8,19 @@
 
 - Add new Tasks
 
-[](./captures/screen1.PNG)
+![screenshot](./captures/screen1.PNG)
 
 - Edit Existing Tasks
 
-[](./captures/screen2.PNG)
+![screenshot](./captures/screen2.PNG)
 
 - Check and cross completed tasks
 
-[](./captures/screen3.PNG)
+![screenshot](./captures/screen3.PNG)
 
 - Delete all completed tasks with one button
 
-[](./captures/screen4.PNG)
+![screenshot](./captures/screen4.PNG)
 
 ## Built With
 

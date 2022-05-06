@@ -1,8 +1,26 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# To do List
+## To do List
 
 > This project its an interactive list of task where you can add and remove tasks dinamically
+
+## Project Images
+
+- Add new Tasks
+
+[](./captures/screen1.PNG)
+
+- Edit Existing Tasks
+
+[](./captures/screen2.PNG)
+
+- Check and cross completed tasks
+
+[](./captures/screen3.PNG)
+
+- Delete all completed tasks with one button
+
+[](./captures/screen4.PNG)
 
 ## Built With
 
@@ -10,6 +28,7 @@
 - JS
 - CSS
 - Webpack
+- Tested with Jest
 
 ## Getting Started
 
